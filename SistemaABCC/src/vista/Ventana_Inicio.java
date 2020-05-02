@@ -57,10 +57,10 @@ public class Ventana_Inicio extends JFrame {
         }
 
         //------------------------------------MOSTRAR MUCHOS ALUMNOS-----------------------------------
-        ArrayList<Alumno> listaAlumnos = new AlumnoDAO().buscarAlumnos("");
+        /*ArrayList<Alumno> listaAlumnos = new AlumnoDAO().buscarAlumnos("");
         for(Alumno alumno:listaAlumnos){
             System.out.println(alumno);
-        }
+        }*/
 
 
     }

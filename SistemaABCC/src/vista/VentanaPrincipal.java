@@ -34,8 +34,6 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
         setVisible(true);
 
-        JDesktopPane desktopPane = new JDesktopPane();
-
         menuBar = new JMenuBar();
         menuInicio = new JMenu("Alumnos");
         menuItemaltas = new JMenuItem("Altas");
@@ -48,10 +46,8 @@ class VentanaPrincipal extends JFrame implements ActionListener{
             public void actionPerformed(ActionEvent e) {
                 PantallaPrincipal IF_Altas = new PantallaPrincipal();
                 IF_Altas.setVisible(true);
-
             }
         });
-        //desktopPane.add(IF_Altas);
         menuInicio.add(menuItemaltas);
         menuItemCambios = new JMenuItem("Cambios/B");
         menuItemCambios.setMnemonic(KeyEvent.VK_B);
@@ -64,7 +60,6 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                 PantallaCambios IF_Cambios = new PantallaCambios();
                 IF_Cambios.setVisible(true);
 
-
             }
         });
         menuInicio.add(menuItemCambios);
@@ -76,15 +71,25 @@ class VentanaPrincipal extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Hola");
+                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
+                ResultSetTableModel modeloTabla = null;
+                try {
+                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(getContentPane(), ex);
+                }
+
                 PantallaConsultas IF_Consultas = new PantallaConsultas();
                 IF_Consultas.setVisible(true);
-
-                //System.out.println(modeloTabla);
             }
+            //return modeloTabla;
         });
         menuInicio.add(menuItemConsultas);
         menuBar.add(menuInicio);
-        menuConversores = new JMenu("Conversores");
+        menuConversores = new JMenu("Maestros");
         menuBar.add(menuConversores);
         setJMenuBar(menuBar);
         // ----------------------   MENU ----------------------------

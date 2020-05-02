@@ -59,11 +59,14 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         DefaultTableModel modelo = new DefaultTableModel();
         //ResultSet rs = ConexionBD.ejecutarConsultaRegistros("SELECT * FROM alumnos ORDER BY Num_Control");
         boolean filtro = true;
-        ArrayList<Alumno> a = new AlumnoDAO().buscarAlumnos(filtro);
+        ArrayList<Alumno> listaAlumnos = new AlumnoDAO().buscarAlumnos(filtro);
         modelo.setColumnIdentifiers(new Object[]{"Num_Control","Nombre_Alumno"});
         try{
             //System.out.println(listaAlumnos);
-            tabla.setModel(modelo);
+            //tabla.setModel(modelo);
+            for(Alumno alumno:listaAlumnos) {
+                System.out.println(alumno);
+            }
         }catch (Exception e){
             System.out.println(e);
         }
@@ -74,9 +77,11 @@ public class PantallaConsultas extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Alumno a = new AlumnoDAO().buscarAlumno(cajaNombre.getText());
         if ( a == null )
-            System.out.println("Error");
+            //System.out.println("Error");
+            JOptionPane.showMessageDialog(null, "Numero de Control no encontrado");
         else {
-            System.out.println(a);
+            //System.out.println(a);
+            JOptionPane.showMessageDialog(null, a);
         }
 
     }

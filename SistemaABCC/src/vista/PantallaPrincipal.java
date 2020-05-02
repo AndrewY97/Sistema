@@ -122,7 +122,8 @@ class PantallaPrincipal extends JFrame implements ActionListener {
 
             boolean res = new AlumnoDAO().agregarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
 
-            System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
+            //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
+            JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
         }
     }
 
