@@ -30,8 +30,8 @@ public class ConexionBD {
 
             conexion = DriverManager.getConnection(url, "root", "acevedoa97");
 
-            System.out.println("Conexion establecida!!!");
-            System.out.println("Ya casi soy ISC  =)  ");
+            //System.out.println("Conexion establecida!!!");
+            //System.out.println("Ya casi soy ISC  =)  ");
 
 
         }catch (ClassNotFoundException e) {

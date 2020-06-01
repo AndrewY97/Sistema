@@ -40,8 +40,9 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         cajaNombre.setBounds(120, 25, 170, 20);
         add(cajaNombre);
 
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(300, 25, 100, 20);
+        btnBuscar = new JButton();
+        btnBuscar.setBounds(300, 15, 40, 40);
+        btnBuscar.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\b.PNG"));
         btnBuscar.addActionListener(this
 
         );

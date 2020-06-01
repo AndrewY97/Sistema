@@ -83,13 +83,13 @@ public class Alumno {
     @Override
     public String toString() {
         return "Alumno{" +
-                "numControl='" + numControl + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", primerAp='" + primerAp + '\'' +
-                ", segundoAp='" + segundoAp + '\'' +
-                ", edad=" + edad +
-                ", semestre=" + semestre +
-                ", carrera='" + carrera + '\'' +
+                 numControl + "|" +
+                 nombre  + "|" +
+                 primerAp + "|" +
+                 segundoAp + "|" +
+                 edad + "|" +
+                 semestre + "|" +
+                 carrera +
                 '}';
     }
 }

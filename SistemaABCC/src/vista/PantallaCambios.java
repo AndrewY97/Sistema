@@ -14,70 +14,81 @@ import java.awt.event.ActionListener;
 public class PantallaCambios extends JFrame implements ActionListener {
     JButton btnEnviar, btncancel, btnBuscar;
     JTextField cajac;
-    JTextField cajaPrimerAp, cajaSegundoAp, cajaSegundoAp2, cajaNombre;
+    JTextField cajaNumControl, cajaNombre, cajaSegundoAp, cajaPrimerAp;
     JComboBox<String> combocarrera;
     JComboBox<Byte> combosemestre, comboEdad;
+    String nombre1;
 
     public PantallaCambios() {
         //configuracion ventana principal
         getContentPane().setLayout(null);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Cambios/ Bajas Alumno");
-        setSize(450, 450);
+        setSize(450, 470);
+        this.getContentPane().setBackground(Color.darkGray);
         setLocationRelativeTo(null);
         setVisible(true);
 
         //agregar componentes graficos al JFrame
         // SIEMPRE EN TRES PASOS:  Creacion, Configuracion y Agregacion al JFrame
         JLabel lblTitulo = new JLabel();
-        lblTitulo.setText("Cambios/ Bajas Alumno");
-        lblTitulo.setBounds(5, 5, 300, 20);
+        lblTitulo.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\TITULOCB.png"));;
+        lblTitulo.setBounds(55, 5, 350, 50);
         add(lblTitulo);
 
         JLabel lblbNumeroControl = new JLabel();
-        lblbNumeroControl.setText("Numero de Control: ");
-        lblbNumeroControl.setBounds(5, 25, 150, 20);
+        lblbNumeroControl.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\nc.png"));
+        lblbNumeroControl.setBounds(2, 65, 150, 20);
         add(lblbNumeroControl);
         cajac = new JTextField(10);
-        cajac.setBounds(120, 25, 170, 20);
+        cajac.setBounds(130, 65, 170, 20);
         add(cajac);
 
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(300, 25, 100, 20);
+        btnBuscar = new JButton();
+        btnBuscar.setBounds(310, 55, 40, 40);
         btnBuscar.addActionListener(this);
+        //btnBuscar.setBackground(Color.darkGray);
+        btnBuscar.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\b.PNG"));
         add(btnBuscar);
 
         JLabel lblNumeroControl = new JLabel();
-        lblNumeroControl.setText("Numero de Control: ");
-        lblNumeroControl.setBounds(150, 45, 150, 20);
+        lblNumeroControl.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\nc.PNG"));
+        lblNumeroControl.setBounds(150, 85, 150, 20);
         add(lblNumeroControl);
+        cajaNumControl = new JTextField(10);
+        cajaNumControl.setBounds(130, 105, 170, 20);
+        cajaNumControl.setEditable(false);
+        add(cajaNumControl);
+
+        JLabel lblPrimerAp = new JLabel();
+        lblPrimerAp.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\nom.png"));
+        lblPrimerAp.setBounds(150, 125, 130, 20);
+        add(lblPrimerAp);
         cajaNombre = new JTextField(10);
-        cajaNombre.setBounds(110, 65, 170, 20);
-        cajaNombre.setEditable(false);
+        cajaNombre.setBounds(130, 145, 170, 20);
         add(cajaNombre);
 
-        JLabel lblPrimerAp = new JLabel("Nombres: ");
-        lblPrimerAp.setBounds(150, 85, 100, 20);
-        add(lblPrimerAp);
+        JLabel lblSegundoAp = new JLabel();
+        lblSegundoAp.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\ap.png"));
+        lblSegundoAp.setBounds(150, 165, 130, 20);
+        add(lblSegundoAp);
         cajaPrimerAp = new JTextField(10);
-        cajaPrimerAp.setBounds(110, 105, 170, 20);
+        cajaPrimerAp.setBounds(130, 185, 170, 20);
         add(cajaPrimerAp);
 
-        JLabel lblSegundoAp = new JLabel("Apellido Paterno: ");
-        lblSegundoAp.setBounds(150, 125, 100, 20);
-        add(lblSegundoAp);
+        JLabel lblSegundoAp2 = new JLabel();
+        lblSegundoAp2.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\am.png"));;
+        lblSegundoAp2.setBounds(150, 205, 130, 20);
+        add(lblSegundoAp2);
         cajaSegundoAp = new JTextField(10);
-        cajaSegundoAp.setBounds(110, 145, 170, 20);
+        cajaSegundoAp.setBounds(130, 225, 170, 20);
         add(cajaSegundoAp);
 
-        JLabel lblSegundoAp2 = new JLabel("Apellido Materno: ");
-        lblSegundoAp2.setBounds(150, 165, 100, 20);
-        add(lblSegundoAp2);
-        cajaSegundoAp2 = new JTextField(10);
-        cajaSegundoAp2.setBounds(110, 185, 170, 20);
-        add(cajaSegundoAp2);
-
-        add(new JLabel("Carrera: ")).setBounds(150, 205, 170, 20);
+        JLabel lblcarrera = new JLabel();
+        lblcarrera.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\car.png"));;
+        lblcarrera.setBounds(150, 245, 170, 20);
+        add(lblcarrera);
+        //add(new JLabel("Carrera: ")).;
         ;
         combocarrera = new JComboBox<>();
         combocarrera.addItem("ING. Sistemas");
@@ -85,46 +96,53 @@ public class PantallaCambios extends JFrame implements ActionListener {
         combocarrera.addItem("Admministracion");
         combocarrera.addItem("Contaduria");
         combocarrera.addItem("ING. Alimentarias");
-        combocarrera.setBounds(110, 225, 170, 20);
+        combocarrera.setBounds(130, 265, 170, 20);
         add(combocarrera);
 
-        add(new JLabel("Semestre: ")).setBounds(150, 245, 170, 20);
-        ;
+        JLabel lblSmestre = new JLabel();
+        lblSmestre.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\sem.png"));;
+        lblSmestre.setBounds(150, 285, 170, 20);
+        add(lblSmestre);
+
         combosemestre = new JComboBox<>();
         for (byte i = 1; i <= 13; i = (byte) (i + 1)) {
             combosemestre.addItem(i);
         }
-        combosemestre.setBounds(110, 265, 170, 20);
+        combosemestre.setBounds(130, 305, 170, 20);
         add(combosemestre);
 
+        JLabel lblEdad = new JLabel();
+        lblEdad.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\ed.png"));;
+        lblEdad.setBounds(150, 325, 170, 20);
+        add(lblEdad);
 
-        add(new JLabel("Edad: ")).setBounds(150, 285, 170, 20);
-        ;
         comboEdad = new JComboBox<>();
         for (byte i = 1; i <= 100; i = (byte) (i + 1)) {
             comboEdad.addItem(i);
         }
-        comboEdad.setBounds(110, 305, 170, 20);
+        comboEdad.setBounds(130, 345, 170, 20);
         add(comboEdad);
 
-        btncancel = new JButton("Elimiar R");
-        btncancel.setBounds(50, 345, 100, 20);
+        btncancel = new JButton();
+        btncancel.setBounds(120, 385, 40, 40);
         btncancel.addActionListener(this);
+        btncancel.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\E.PNG"));
         add(btncancel);
 
-        btnEnviar = new JButton("Modificar> ");
-        btnEnviar.setBounds(200, 345, 140, 20);
+        btnEnviar = new JButton();
+        btnEnviar.setBounds(270, 385, 40, 40);
         btnEnviar.addActionListener(this);
+        btnEnviar.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\C.PNG"));
         add(btnEnviar);
     }
 
     @Override
     public void actionPerformed(ActionEvent x) {
         //Paso 3: Verificar que commponente genera el evento
-        String NuC = cajaNombre.getText();
-        String NAME = cajaPrimerAp.getText();
-        String PA = cajaSegundoAp.getText();
-        String SA = cajaSegundoAp2.getText();
+        String NuC = cajaNumControl.getText();
+        String NAME = cajaNombre.getText();
+        String PA = cajaPrimerAp.getText();
+        String SA = cajaSegundoAp.getText();
         byte E= (byte) comboEdad.getSelectedItem();
         byte S = (byte) combosemestre.getSelectedItem();
         String C = (String) combocarrera.getSelectedItem();
@@ -143,7 +161,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
         }if(x.getSource()==btncancel){
             System.out.println("Hola");
             String nUc = cajaNombre.getText();
-            boolean res = new AlumnoDAO().eliminarAlumno(nUc);
+            boolean res = new AlumnoDAO().eliminarAlumno(cajac.getText());
 
             //System.out.println( res ? "EXITO ELIMINADO !!!" : "Fallo en la ELIMINACION !!!" );
             JOptionPane.showMessageDialog(null, NuC+" Dado de baja con exito");
@@ -156,19 +174,16 @@ public class PantallaCambios extends JFrame implements ActionListener {
                 cajaNombre.setText("");
                 JOptionPane.showMessageDialog(null, nnc+" No encontrado");}
             else {
-                cajaNombre.setText(nnc);
+                cajaNumControl.setText(a.getNumControl());
                 String str = String.valueOf(a);
-                char[] ch = new char[str.length()];
-                for(int i =0; i < str.length(); i = i + 1)
-                {
-                    if(ch[i]=='='){
+                System.out.println(a);
+                cajaNombre.setText(a.getNombre());
+                cajaPrimerAp.setText(a.getPrimerAp());
+                cajaSegundoAp.setText(a.getSegundoAp());
+                combocarrera.setSelectedItem(a.getCarrera());
+                comboEdad.setSelectedItem(a.getEdad());
+                combosemestre.setSelectedItem(a.getSemestre());
 
-                    }else{
-
-                    }
-                    ch[i] = str.charAt(i);
-                }
-                System.out.println(ch[2]);
             }
 
         }
