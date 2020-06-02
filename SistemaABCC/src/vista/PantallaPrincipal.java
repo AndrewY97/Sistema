@@ -4,6 +4,8 @@ import controlador.AlumnoDAO;
 import modelo.Alumno;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -47,6 +49,8 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         add(lblPrimerAp);
         cajaNombre = new JTextField(10);
         cajaNombre.setBounds(130, 105, 170, 20);
+        ValidaCaracter valChar=new ValidaCaracter();
+        cajaNombre.addKeyListener(valChar);
         add(cajaNombre);
 
         JLabel lblSegundoAp = new JLabel();
@@ -55,6 +59,8 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         add(lblSegundoAp);
         cajaPrimerAp = new JTextField(10);
         cajaPrimerAp.setBounds(130, 145, 170, 20);
+        ValidaCaracter valChar2=new ValidaCaracter();
+        cajaPrimerAp.addKeyListener(valChar2);
         add(cajaPrimerAp);
 
         JLabel lblSegundoAp2 = new JLabel();
@@ -63,6 +69,8 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         add(lblSegundoAp2);
         cajaSegundoAp = new JTextField(10);
         cajaSegundoAp.setBounds(130, 185, 170, 20);
+        ValidaCaracter valChar3=new ValidaCaracter();
+        cajaSegundoAp.addKeyListener(valChar3);
         add(cajaSegundoAp);
 
         JLabel lblcarrera = new JLabel();
@@ -143,6 +151,16 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         }
     }
 
+}
+class ValidaCaracter extends KeyAdapter {
+    public void keyPressed(KeyEvent ev){
+        int codigo=(int) ev.getKeyChar();
+        if(codigo>=33 && codigo<=64){
+            ev.setKeyChar((char) KeyEvent.VK_CLEAR);//Limpiar el caracter ingresado
+            JOptionPane.showMessageDialog(null, "Caracteres Invalidos!!!", "Validando Datos",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
     class PruebaPrincipal {
         public static void main(String[] args) {

@@ -4,6 +4,7 @@ import com.sun.net.httpserver.Authenticator;
 import conexionBD.ConexionBD;
 import modelo.Alumno;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -10,46 +10,40 @@ import java.sql.Statement;
 public class ConexionBD {
 
     private Connection conexion;
-    private Statement stm; //problema: permite SQL INJECTION
+    //private Statement stm; //problema: permite SQL INJECTION
 
     private PreparedStatement ps; //evita SQL INJECTION
 
     private ResultSet rs;
 
-    public ConexionBD() {
+    private static Connection con=null;
 
-        //verifica que exista el conector de BD entre Java y MySQL
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            //127.0.0.1
-            String URL = "jdbc:mysql://localhost:3306/BD_Escuela";
-
-            //en caso que les indique un error de zona horaria
-            String url = "jdbc:mysql://localhost:3306/BD_Escuela?useTimezone=true&serverTimezone=UTC";
-
-            conexion = DriverManager.getConnection(url, "root", "acevedoa97");
-
-            //System.out.println("Conexion establecida!!!");
-            //System.out.println("Ya casi soy ISC  =)  ");
-
-
-        }catch (ClassNotFoundException e) {
-            System.out.println("Error del DRIVER");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.out.println("Error en conexion a MySQL");
-            e.printStackTrace();
+    private static Connection getConnection(){
+        try{
+            if( con == null ){
+                String driver="com.mysql.cj.jdbc.Driver"; //el driver varia segun la DB que usemos
+                String url="jdbc:mysql://localhost:3306/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String pwd="acevedoa97";
+                String usr="Andrew";
+                Class.forName(driver);
+                con = DriverManager.getConnection(url,usr,pwd);
+                System.out.println("Conectionesfull");
+            }
         }
+        catch(ClassNotFoundException | SQLException ex){
+            ex.printStackTrace();
+        }
+        return con;
     }
 
 
     //Metodo para ejecutar instrucciones DDL y DML (Altas, Bajas y Cambios, entre otras)
     public boolean ejecutarInstruccion(String sql) {
         try {
-
-            stm = conexion.createStatement();
-            int res = stm.executeUpdate(sql);
+            Connection c = ConexionBD.getConnection();
+            //PreparedStatement st;
+            ps = c.prepareStatement(sql);
+            int res = ps.executeUpdate(sql);
             System.out.println("CONEXION BD: " + res);
             return res==1 ? true : false;
 
@@ -65,8 +59,10 @@ public class ConexionBD {
     public ResultSet ejecutarConsultaRegistros(String sql) {
         ResultSet rs = null;
         try {
-            stm = conexion.createStatement();
-            return stm.executeQuery(sql);
+            Connection c = ConexionBD.getConnection();
+            //PreparedStatement st;
+            ps = c.prepareStatement(sql);
+            return ps.executeQuery(sql);
         } catch (SQLException throwables) {
             System.out.println("Error en la instruccion SQL \n" + sql);
             throwables.printStackTrace();
@@ -76,7 +72,7 @@ public class ConexionBD {
 
     public void cerrarConexion(){
         try {
-            stm.close();
+            ps.close();
             conexion.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -28,7 +28,7 @@ class VentanaPrincipal extends JFrame implements ActionListener{
 
     public VentanaPrincipal(){
         getContentPane().setLayout(new BorderLayout());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Sistema ABCC");
         setSize(800, 800);
         setLocationRelativeTo(null);

@@ -75,7 +75,7 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         }
 
         DefaultTableModel model = new DefaultTableModel();
-        System.out.println("Hola");
+        //System.out.println("Hola");
         int v1=modeloTabla.getColumnCount();
         int v2=modeloTabla.getRowCount();
         String[][] valor = new String[v1][v2];
