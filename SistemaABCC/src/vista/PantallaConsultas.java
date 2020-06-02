@@ -98,7 +98,7 @@ public class PantallaConsultas extends JFrame implements ActionListener {
                 celdas[j][i]=valor[i][j];
             }
         }
-        
+
         for (int i = 0; i <v1 ; i++) {
             for (int j = 0; j <v2 ; j++) {
                 //celdas[i][j]=valor[i][j];
@@ -123,35 +123,6 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         //String[] dato = new String[7];
 
     }
-    public void llenar(){
-        String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
-        String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
-        String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
-        ResultSetTableModel modeloTabla = null;
-        try {
-            modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
-
-        } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(getContentPane(), ex);
-        }
-    }
-    public void mostrar(){
-        DefaultTableModel modelo = new DefaultTableModel();
-        //ResultSet rs = ConexionBD.ejecutarConsultaRegistros("SELECT * FROM alumnos ORDER BY Num_Control");
-        boolean filtro = true;
-        ArrayList<Alumno> listaAlumnos = new AlumnoDAO().buscarAlumnos(filtro);
-        modelo.setColumnIdentifiers(new Object[]{"Num_Control","Nombre_Alumno"});
-        try{
-            //System.out.println(listaAlumnos);
-            //tabla.setModel(modelo);
-            for(Alumno alumno:listaAlumnos) {
-                System.out.println(alumno);
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        //modelo.setColumnIdentifiers(new Object[]{rs.getString("nombres"),rs.getString("apellidos")});
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -161,7 +132,22 @@ public class PantallaConsultas extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, "Numero de Control no encontrado");
         else {
             //System.out.println(a);
-            JOptionPane.showMessageDialog(null, a);
+            //JOptionPane.showMessageDialog(null, a);
+            Object titulos2[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+            String celdas2[][] = new String[1][7];
+            celdas2[0][0]=a.getNumControl();
+            celdas2[0][1]=a.getNombre();
+            celdas2[0][2]=a.getPrimerAp();
+            celdas2[0][3]=a.getSegundoAp();
+            celdas2[0][4]= String.valueOf(a.getEdad());
+            celdas2[0][5]= String.valueOf(a.getSemestre());
+            celdas2[0][6]=a.getCarrera();
+            JScrollPane scroll = new JScrollPane();
+            tabla = new JTable(celdas2, titulos2);
+            //tabla.setModel(valor);
+            scroll.setViewportView(tabla);
+            scroll.setBounds(10, 100, 700, 70);
+            getContentPane().add(scroll);
         }
 
     }
