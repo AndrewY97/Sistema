@@ -115,6 +115,7 @@ public class ResultSetTableModel extends AbstractTableModel {
         if ( !conectadoALaBaseDeDatos )
             throw new IllegalStateException( "No hay conexion a la base de datos" );
 
+
         return numeroDeFilas;
     }
 

@@ -71,21 +71,12 @@ class VentanaPrincipal extends JFrame implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Hola");
-                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
-                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
-                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
-                ResultSetTableModel modeloTabla = null;
-                try {
-                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
-
-                } catch (ClassNotFoundException | SQLException ex) {
-                    JOptionPane.showMessageDialog(getContentPane(), ex);
-                }
-
                 PantallaConsultas IF_Consultas = new PantallaConsultas();
                 IF_Consultas.setVisible(true);
+                //System.out.println(modeloTabla.getColumnCount());
+                //public modeloTabla2= modeloTabla;
+
             }
-            //return modeloTabla;
         });
         menuInicio.add(menuItemConsultas);
         menuBar.add(menuInicio);

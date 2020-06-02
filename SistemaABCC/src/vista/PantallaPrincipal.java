@@ -19,7 +19,7 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         //configuracion ventana principal
         getContentPane().setLayout(null);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setTitle("Cambios/ Bajas Alumno");
+        setTitle("Registro");
         setSize(450, 470);
         this.getContentPane().setBackground(Color.darkGray);
         setLocationRelativeTo(null);
@@ -38,7 +38,7 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         add(lblNumeroControl);
         cajaNumControl = new JTextField(10);
         cajaNumControl.setBounds(130, 65, 170, 20);
-        cajaNumControl.setEditable(false);
+        //cajaNumControl.setEditable(false);
         add(cajaNumControl);
 
         JLabel lblPrimerAp = new JLabel();
