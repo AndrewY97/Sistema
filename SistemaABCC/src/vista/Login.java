@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 public class Login extends JFrame implements ActionListener {
     JButton btnOK,btncancel;
     JTextField cajau,cajapass;
+
     public Login(){
         getContentPane().setLayout(new BorderLayout());
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Login");
+        this.getContentPane().setBackground(Color.darkGray);
         setSize(400, 400);
         setLocationRelativeTo(null);
         setVisible(true);
