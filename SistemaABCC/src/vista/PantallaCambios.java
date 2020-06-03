@@ -189,14 +189,4 @@ public class PantallaCambios extends JFrame implements ActionListener {
         }
     }
 }
-    class Prueba2 {
-    public static void main(String[] args) {
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PantallaCambios();
-            }
-        });
-    }
-}

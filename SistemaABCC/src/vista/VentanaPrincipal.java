@@ -27,10 +27,11 @@ class VentanaPrincipal extends JFrame implements ActionListener{
     JInternalFrame IF_Altas, IF_Cambios, IF_Consultas;
 
     public VentanaPrincipal(){
-        getContentPane().setLayout(new BorderLayout());
+        getContentPane().setLayout(null);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Sistema ABCC");
         setSize(800, 800);
+        this.getContentPane().setBackground(Color.darkGray);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -83,36 +84,12 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         menuConversores = new JMenu("Maestros");
         menuBar.add(menuConversores);
         setJMenuBar(menuBar);
-        // ----------------------   MENU ----------------------------
 
-        //---------------- INTERNALFRAMES ----------------------
-        /*JDesktopPane desktopPane = new JDesktopPane();
+        JLabel lblTitulo = new JLabel();
+        lblTitulo.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\BIENVENIDO.png"));;
+        lblTitulo.setBounds(140, 250, 500, 120);
+        add(lblTitulo);
 
-        IF_CalcSencilla = new JInternalFrame();
-        IF_CalcSencilla.getContentPane().setLayout(null);
-        IF_CalcSencilla.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        IF_CalcSencilla.setTitle("InternalFrames");
-        IF_CalcSencilla.setSize(300, 300);
-
-        IF_CalcSencilla.setMaximizable(true);
-        IF_CalcSencilla.setIconifiable(true);
-        IF_CalcSencilla.setClosable(true);
-        IF_CalcSencilla.setResizable(true);
-
-        //IF_CalcSencilla.setVisible(true);
-
-        JPanel panelCalculadora = new JPanel();
-        panelCalculadora.add(new JLabel("Calculadora SENCILLA"));
-        JTextField cajaMantisa = new JTextField(10);
-        panelCalculadora.add(cajaMantisa);
-        panelCalculadora.setBounds(0,0, 100, 100);
-        IF_Altas.add(panelCalculadora);
-
-        desktopPane.add(IF_Altas); // agregar InternalFrame al DesktopPane
-
-        add(desktopPane, BorderLayout.CENTER); //agreagr desktopPane al JFrame principal
-
-    }//constructor*/
 
 }//classe VentanaInicio
 
@@ -123,17 +100,7 @@ class VentanaPrincipal extends JFrame implements ActionListener{
 
 }
 
-class Inicio {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new VentanaPrincipal();
-            }
-        });
 
-    }
-}
 
 
 

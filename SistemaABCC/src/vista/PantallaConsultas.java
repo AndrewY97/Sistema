@@ -154,14 +154,3 @@ public class PantallaConsultas extends JFrame implements ActionListener {
 
 }
 
-class pantallaconsulta {
-    public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PantallaConsultas();
-            }
-        });
-    }
-}
