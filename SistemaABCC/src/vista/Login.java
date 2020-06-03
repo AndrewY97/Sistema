@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 
 public class Login extends JFrame implements ActionListener {
     JButton btnOK,btncancel;
-    JTextField cajau,cajapass;
+    JTextField cajau;
+    JPasswordField cajapass;
 
     public Login(){
         getContentPane().setLayout(null);
@@ -34,7 +35,7 @@ public class Login extends JFrame implements ActionListener {
         lblcon.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\contra.png"));
         lblcon.setBounds(5, 120, 150, 60);
         add(lblcon);
-        cajapass = new JTextField(10);
+        cajapass = new JPasswordField(10);
         cajapass.setBounds(124, 142, 170, 20);
         add(cajapass);
 
