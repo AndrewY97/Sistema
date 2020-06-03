@@ -11,7 +11,7 @@ public class Login extends JFrame implements ActionListener {
 
     public Login(){
         getContentPane().setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Login");
         this.getContentPane().setBackground(Color.darkGray);
         setSize(400, 400);
@@ -64,6 +64,7 @@ public class Login extends JFrame implements ActionListener {
             if(usuario.equals(u) && pass.equals(p)){
                 VentanaPrincipal VP= new VentanaPrincipal();
                 VP.setVisible(true);
+                dispose();
             }else{
                 JOptionPane.showMessageDialog(null,"Datos erroneos");
             }
