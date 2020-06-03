@@ -10,7 +10,7 @@ public class Login extends JFrame implements ActionListener {
 
     public Login(){
         getContentPane().setLayout(null);
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Login");
         this.getContentPane().setBackground(Color.darkGray);
         setSize(400, 400);
@@ -26,11 +26,17 @@ public class Login extends JFrame implements ActionListener {
         lblus.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\us.png"));
         lblus.setBounds(5, 70, 150, 60);
         add(lblus);
+        cajau = new JTextField(10);
+        cajau.setBounds(87, 93, 170, 20);
+        add(cajau);
 
         JLabel lblcon = new JLabel();
         lblcon.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\contra.png"));
         lblcon.setBounds(5, 120, 150, 60);
         add(lblcon);
+        cajapass = new JTextField(10);
+        cajapass.setBounds(124, 142, 170, 20);
+        add(cajapass);
 
         btnOK = new JButton();
         btnOK.setBounds(260, 190, 40, 40);
@@ -48,9 +54,26 @@ public class Login extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        String usuario="Andrew";
+        String pass="Acevedoa97";
+        String u=cajau.getText();
+        String p=cajapass.getText();
+        if (e.getSource()==btnOK) {
+            //System.out.println(cajau.getText());
+            if(usuario.equals(u) && pass.equals(p)){
+                VentanaPrincipal VP= new VentanaPrincipal();
+                VP.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null,"Datos erroneos");
+            }
+        }else{
+            cajau.setText("");
+            cajapass.setText("");
+        }
 
     }
 }
+
 class log {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
