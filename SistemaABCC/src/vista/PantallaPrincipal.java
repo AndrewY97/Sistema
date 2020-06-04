@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.AlumnoDAO;
+import controlador.AlumnoDAORACLE;
 import modelo.Alumno;
 
 import javax.swing.*;
@@ -152,6 +153,7 @@ class PantallaPrincipal extends JFrame implements ActionListener {
                 String c = C;
 
                 boolean res = new AlumnoDAO().agregarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
+                boolean res2= new AlumnoDAORACLE().agregarAlumno(new Alumno(nc,n,pa,sa,e,s,c));
 
                 //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
                 JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");

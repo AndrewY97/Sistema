@@ -15,8 +15,8 @@ public class ConexionOracle {
     private static Connection getConnection(){
         try{
             if( con == null ){
-                String driver="oracle.jdbc.OracleDriver"; //el driver varia segun la DB que usemos
-                String url="jdb:oracle:thin@localhost:1521:xe";
+                String driver="oracle.jdbc.driver.OracleDriver"; //el driver varia segun la DB que usemos
+                String url="jdbc:oracle:thin:@localhost:1521:bdescuela";
                 String pwd="Acevedoa97";
                 String usr="SYSTEM";
                 Class.forName(driver);
