@@ -147,16 +147,23 @@ public class PantallaCambios extends JFrame implements ActionListener {
         byte S = (byte) combosemestre.getSelectedItem();
         String C = (String) combocarrera.getSelectedItem();
         if (x.getSource() == btnEnviar) {
-            String nc = NuC;
-            String n = NAME;
-            String pa = PA;
-            String sa = SA;
-            byte e = E;
-            byte s = S;
-            String c = C;
-
-        boolean res = new AlumnoDAO().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
-            JOptionPane.showMessageDialog(null, NuC+" Modificado con exito");
+            NuC=NuC.replaceAll(" ", "");
+            NAME=NAME.replaceAll(" ", "");
+            PA=PA.replaceAll(" ", "");
+            SA=SA.replaceAll(" ", "");
+            if (NAME.equals("")||PA.equals("")||SA.equals("")){
+                JOptionPane.showMessageDialog(null,"Campos vacios");
+            }else{
+                String nc = NuC;
+                String n = NAME;
+                String pa = PA;
+                String sa = SA;
+                byte e = E;
+                byte s = S;
+                String c = C;
+                boolean res = new AlumnoDAO().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
+                JOptionPane.showMessageDialog(null, NuC+" Modificado con exito");
+            }
         //System.out.println( res ? "EXITO MODIFICADO !!!" : "Fallo en la MODIFICACION !!!" );
         }if(x.getSource()==btncancel){
             System.out.println("Hola");

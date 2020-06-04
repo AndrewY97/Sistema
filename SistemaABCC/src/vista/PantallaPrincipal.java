@@ -136,18 +136,32 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         byte S = (byte) combosemestre.getSelectedItem();
         String C = (String) combocarrera.getSelectedItem();
         if (x.getSource() == btnEnviar) {
-            String nc = NuC;
-            String n = NAME;
-            String pa = PA;
-            String sa = SA;
-            byte e = E;
-            byte s = S;
-            String c = C;
+            NuC=NuC.replaceAll(" ", "");
+            NAME=NAME.replaceAll(" ", "");
+            PA=PA.replaceAll(" ", "");
+            SA=SA.replaceAll(" ", "");
+            if (NuC.equals("")||NAME.equals("")||PA.equals("")||SA.equals("")){
+                JOptionPane.showMessageDialog(null,"Campos vacios");
+            }else{
+                String nc = NuC;
+                String n = NAME;
+                String pa = PA;
+                String sa = SA;
+                byte e = E;
+                byte s = S;
+                String c = C;
 
-            boolean res = new AlumnoDAO().agregarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
+                boolean res = new AlumnoDAO().agregarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
 
-            //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
-            JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
+                //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
+                JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
+            }
+
+        }if(x.getSource() == btncancel){
+            cajaNumControl.setText("");
+            cajaNombre.setText("");
+            cajaPrimerAp.setText("");
+            cajaSegundoAp.setText("");
         }
     }
 
