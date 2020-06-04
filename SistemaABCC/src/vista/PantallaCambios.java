@@ -2,6 +2,7 @@ package vista;
 
 import javax.swing.*;
 import controlador.AlumnoDAO;
+import controlador.AlumnoDAORACLE;
 import modelo.Alumno;
 
 
@@ -162,6 +163,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
                 byte s = S;
                 String c = C;
                 boolean res = new AlumnoDAO().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
+                boolean resw = new AlumnoDAORACLE().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
                 JOptionPane.showMessageDialog(null, NuC+" Modificado con exito");
                 dispose();
             }
@@ -177,6 +179,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
         }if(x.getSource()==btnBuscar){
             String nnc= cajac.getText();
             Alumno a = new AlumnoDAO().buscarAlumno(cajac.getText());
+            Alumno a2 = new AlumnoDAORACLE().buscarAlumno(cajac.getText());
             int [] miArreglo=new int [30];
             if ( a == null ){
                 //System.out.println("Error");

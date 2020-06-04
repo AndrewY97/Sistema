@@ -62,7 +62,7 @@ public class AlumnoDAORACLE {
         ResultSet res = new ConexionOracle().ejecutarConsultaRegistros(sql);
 
         try {
-            res.last();
+            res.next();
 
             return new Alumno(res.getString("Num_Control"),
                     res.getString(2),
