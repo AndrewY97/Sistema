@@ -163,6 +163,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
                 String c = C;
                 boolean res = new AlumnoDAO().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
                 JOptionPane.showMessageDialog(null, NuC+" Modificado con exito");
+                dispose();
             }
         //System.out.println( res ? "EXITO MODIFICADO !!!" : "Fallo en la MODIFICACION !!!" );
         }if(x.getSource()==btncancel){

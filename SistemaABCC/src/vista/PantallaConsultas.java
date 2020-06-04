@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.cj.jdbc.CallableStatement;
 import controlador.AlumnoDAO;
 import modelo.Alumno;
 import vista.VentanaPrincipal;
@@ -13,6 +14,7 @@ import conexionBD.ConexionBD;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
