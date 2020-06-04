@@ -92,10 +92,10 @@ public class PantallaCambios extends JFrame implements ActionListener {
         ;
         combocarrera = new JComboBox<>();
         combocarrera.addItem("ING. Sistemas");
-        combocarrera.addItem("ING. Mecatronica");
-        combocarrera.addItem("Admministracion");
-        combocarrera.addItem("Contaduria");
-        combocarrera.addItem("ING. Alimentarias");
+        combocarrera.addItem("ING. Mecatrónica");
+        combocarrera.addItem("Administración");
+        combocarrera.addItem("Contaduría");
+        combocarrera.addItem("ING. Alimentaria");
         combocarrera.setBounds(130, 265, 170, 20);
         add(combocarrera);
 
@@ -166,7 +166,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
             }
         //System.out.println( res ? "EXITO MODIFICADO !!!" : "Fallo en la MODIFICACION !!!" );
         }if(x.getSource()==btncancel){
-            System.out.println("Hola");
+            //System.out.println("Hola");
             String nUc = cajaNombre.getText();
             boolean res = new AlumnoDAO().eliminarAlumno(cajac.getText());
 

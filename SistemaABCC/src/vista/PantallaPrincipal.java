@@ -81,10 +81,10 @@ class PantallaPrincipal extends JFrame implements ActionListener {
         ;
         combocarrera = new JComboBox<>();
         combocarrera.addItem("ING. Sistemas");
-        combocarrera.addItem("ING. Mecatronica");
-        combocarrera.addItem("Admministracion");
-        combocarrera.addItem("Contaduria");
-        combocarrera.addItem("ING. Alimentarias");
+        combocarrera.addItem("ING. Mecatrónica");
+        combocarrera.addItem("Administración");
+        combocarrera.addItem("Contaduría");
+        combocarrera.addItem("ING. Alimentaria");
         combocarrera.setBounds(130, 225, 170, 20);
         add(combocarrera);
 
