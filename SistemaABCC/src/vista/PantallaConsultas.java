@@ -27,7 +27,7 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         getContentPane().setLayout(null);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setTitle("Consultas");
-        setSize(790, 470);
+        setSize(770, 470);
         this.getContentPane().setBackground(Color.darkGray);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -108,7 +108,7 @@ public class PantallaConsultas extends JFrame implements ActionListener {
         tabla = new JTable(celdas, titulos);
         //tabla.setModel(valor);
         scroll.setViewportView(tabla);
-        scroll.setBounds(10, 100, 700, 70);
+        scroll.setBounds(10, 100, 700, 120);
         getContentPane().add(scroll);
 
         //model.addRow(valor);
