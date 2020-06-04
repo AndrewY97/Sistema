@@ -155,6 +155,7 @@ class PantallaPrincipal extends JFrame implements ActionListener {
 
                 //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
                 JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
+                dispose();
             }
 
         }if(x.getSource() == btncancel){
