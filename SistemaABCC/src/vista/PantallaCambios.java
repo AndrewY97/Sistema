@@ -172,6 +172,7 @@ public class PantallaCambios extends JFrame implements ActionListener {
 
             //System.out.println( res ? "EXITO ELIMINADO !!!" : "Fallo en la ELIMINACION !!!" );
             JOptionPane.showMessageDialog(null, NuC+" Dado de baja con exito");
+            dispose();
         }if(x.getSource()==btnBuscar){
             String nnc= cajac.getText();
             Alumno a = new AlumnoDAO().buscarAlumno(cajac.getText());
