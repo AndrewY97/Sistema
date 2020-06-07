@@ -29,8 +29,8 @@ class VentanaPrincipal extends JFrame implements ActionListener{
     JTable tabla;
     JComboBox<String> combocarrera;
     JComboBox<Byte> combosemestre, comboEdad;
-    JRadioButton a,cb;
-    ButtonGroup grupo;
+    JRadioButton a,cb,n,c,cn;
+    ButtonGroup grupo,grupo2;
 
     public VentanaPrincipal(){
         getContentPane().setLayout(null);
@@ -230,6 +230,8 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         grupo.add(a);
         grupo.add(cb);
 
+
+
         JLabel lblA = new JLabel();
         lblA.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\alt.png"));;
         lblA.setBounds(30, 150, 170, 20);
@@ -240,6 +242,28 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         lblcb.setBounds(30, 174, 170, 20);
         add(lblcb);
 
+        grupo2=new ButtonGroup();
+        n=new JRadioButton();
+        //a.setText("Radio1");
+        n.setBounds(790, 80, 20, 30);
+        n.setBackground(Color.darkGray);
+        n.addActionListener(this);
+        add(n);
+        c=new JRadioButton();
+        //cb.setText("Radio2");
+        c.setBounds(790, 100, 20, 30);
+        c.setBackground(Color.darkGray);
+        c.addActionListener(this);
+        add(c);
+        cn=new JRadioButton();
+        //cb.setText("Radio2");
+        cn.setBounds(790, 120, 20, 30);
+        cn.setBackground(Color.darkGray);
+        cn.addActionListener(this);
+        add(cn);
+        grupo2.add(n);
+        grupo2.add(c);
+        grupo2.add(cn);
 
 
 
@@ -306,6 +330,10 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                     //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
                     JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
                     //dispose();
+                    cajaNumControl.setText("");
+                    cajaNombre.setText("");
+                    cajaPrimerAp.setText("");
+                    cajaSegundoAp.setText("");
                 }
 
             }if(x.getSource() == btncancel){
@@ -345,16 +373,24 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                     boolean resw = new AlumnoDAORACLE().modificarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
                     JOptionPane.showMessageDialog(null, NuC+" Modificado con exito");
                     //dispose();
+                    cajaNumControl.setText("");
+                    cajaNombre.setText("");
+                    cajaPrimerAp.setText("");
+                    cajaSegundoAp.setText("");
                 }
                 //System.out.println( res ? "EXITO MODIFICADO !!!" : "Fallo en la MODIFICACION !!!" );
             }if(x.getSource()==btncancel){
                 //System.out.println("Hola");
                 String nUc = cajaNombre.getText();
-                boolean res = new AlumnoDAO().eliminarAlumno(cajac.getText());
+                boolean BAJA = new AlumnoDAO().eliminarAlumno(cajac2.getText());
 
                 //System.out.println( res ? "EXITO ELIMINADO !!!" : "Fallo en la ELIMINACION !!!" );
                 JOptionPane.showMessageDialog(null, NuC+" Dado de baja con exito");
                 //dispose();
+                cajaNumControl.setText("");
+                cajaNombre.setText("");
+                cajaPrimerAp.setText("");
+                cajaSegundoAp.setText("");
             }if(x.getSource()==btnBuscar2){
                 String nnc= cajac.getText();
                 Alumno a = new AlumnoDAO().buscarAlumno(cajac2.getText());
