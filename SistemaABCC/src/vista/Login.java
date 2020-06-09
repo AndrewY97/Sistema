@@ -2,12 +2,13 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import controlador.MetodosLogin;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame implements ActionListener {
     JButton btnOK,btncancel;
-    JTextField cajau;
-    JPasswordField cajapass;
+    public JTextField cajau;
+    public JPasswordField cajapass;
 
     public Login(){
         getContentPane().setLayout(null);
@@ -59,14 +60,21 @@ public class Login extends JFrame implements ActionListener {
         String pass="Acevedoa97";
         String u=cajau.getText();
         String p=cajapass.getText();
+
         if (e.getSource()==btnOK) {
-            //System.out.println(cajau.getText());
-            if(usuario.equals(u) && pass.equals(p)){
+            String ok= new MetodosLogin().validar_ingreso(u,p);
+            if(ok!=null){
+                JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                                + "satisfactoriamente al sistema", "Mensaje de bienvenida",
+                        JOptionPane.INFORMATION_MESSAGE);
                 VentanaPrincipal VP= new VentanaPrincipal();
                 VP.setVisible(true);
                 dispose();
-            }else{
-                JOptionPane.showMessageDialog(null,"Datos erroneos");
+            }else {
+                JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                                + "Por favor ingrese un usuario y/o contraseña correctos", "Acceso denegado",
+                        JOptionPane.ERROR_MESSAGE);
+
             }
         }else{
             cajau.setText("");

@@ -3,7 +3,9 @@ package controlador;
 import com.sun.net.httpserver.Authenticator;
 import conexionBD.ConexionBD;
 import modelo.Alumno;
+import modelo.Usuario;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,9 +29,9 @@ public class AlumnoDAO {
 
         boolean resultado = new ConexionBD().ejecutarInstruccion(sql);
         System.out.println("ALUMNO DAO: " + resultado);
-
         return resultado;
     }
+
 
     public boolean eliminarAlumno(String numControl){
 
@@ -56,16 +58,27 @@ public class AlumnoDAO {
         return resultado;
     }
 
-    public Alumno buscarAlumno(String numControl){
+    public Alumno buscarAlumno(int valor,String numControl){
         //SELECT * FROM Alumnos WHERE Num_Control = '2';
-        String sql = "SELECT * FROM Alumnos WHERE Num_Control = '"+numControl+"'";
+        String sql=null;
+        String campo = null;
+        if(valor==2){
+            sql = "SELECT * FROM Alumnos WHERE Num_Control = '"+numControl+"'";
+            campo = "Num_Control";
+        }if(valor==3){
+            sql = "SELECT * FROM Alumnos WHERE Nombre_Alumno = '"+numControl+"'";
+            campo ="Nombre_Alumno";
+        }if(valor==1){
+            sql = "SELECT * FROM Alumnos WHERE Carrera = '"+numControl+"'";
+            campo ="Carrera";
+        }
 
         ResultSet res = new ConexionBD().ejecutarConsultaRegistros(sql);
 
         try {
             res.last();
 
-            return new Alumno(res.getString("Num_Control"),
+            return new Alumno(res.getString(campo),
                     res.getString(2),
                     res.getString(3),
                     res.getString(4),
@@ -105,4 +118,13 @@ public class AlumnoDAO {
     }
 
 
+    public boolean agregausuario(Usuario a) {
+        //INSERT INTO Alumnos VALUES("1", '1', '1', '1', 1, 1, '1');
+        String sql = "INSERT INTO usuarios VALUES('"+a.getNumControl()
+                +"','" + a.getNombre()+ "')";
+
+        boolean resultado = new ConexionBD().ejecutarInstruccion(sql);
+        System.out.println("ALUMNO DAO: " + resultado);
+        return resultado;
+    }
 }

@@ -185,8 +185,9 @@ public class PantallaCambios extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, NuC+" Dado de baja con exito");
             dispose();
         }if(x.getSource()==btnBuscar){
+            int valor=2;
             String nnc= cajac.getText();
-            Alumno a = new AlumnoDAO().buscarAlumno(cajac.getText());
+            Alumno a = new AlumnoDAO().buscarAlumno(valor,cajac.getText());
             Alumno a2 = new AlumnoDAORACLE().buscarAlumno(cajac.getText());
             int [] miArreglo=new int [30];
             if ( a == null ){

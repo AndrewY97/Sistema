@@ -9,6 +9,7 @@ import com.mysql.cj.jdbc.CallableStatement;
 import controlador.AlumnoDAO;
 import controlador.AlumnoDAORACLE;
 import modelo.Alumno;
+import modelo.Usuario;
 import vista.VentanaPrincipal;
 import conexionBD.ConexionBD;
 
@@ -265,38 +266,195 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         grupo2.add(c);
         grupo2.add(cn);
 
+        JLabel lblnumcontrol = new JLabel();
+        lblnumcontrol.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\d2.png"));;
+        lblnumcontrol.setBounds(810, 84, 170, 20);
+        add(lblnumcontrol);
+
+        JLabel lblcnombre = new JLabel();
+        lblcnombre.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\d1.png"));;
+        lblcnombre.setBounds(810, 104, 170, 20);
+        add(lblcnombre);
+
+        JLabel lblcarreras = new JLabel();
+        lblcarreras.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\d3.png"));;
+        lblcarreras.setBounds(810, 124, 170, 20);
+        add(lblcarreras);
+
 
 
     }
 
     @Override
     public void actionPerformed(ActionEvent x) {
-        if (x.getSource()==btnBuscar){
-            Alumno a = new AlumnoDAO().buscarAlumno(cajac.getText());
-            if ( a == null )
-                //System.out.println("Error");
-                JOptionPane.showMessageDialog(null, "Numero de Control no encontrado");
-            else {
-                //System.out.println(a);
-                //JOptionPane.showMessageDialog(null, a);
-                Object titulos2[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad", "Semestre", "Carrera"};
-                String celdas2[][] = new String[1][7];
-                celdas2[0][0] = a.getNumControl();
-                celdas2[0][1] = a.getNombre();
-                celdas2[0][2] = a.getPrimerAp();
-                celdas2[0][3] = a.getSegundoAp();
-                celdas2[0][4] = String.valueOf(a.getEdad());
-                celdas2[0][5] = String.valueOf(a.getSemestre());
-                celdas2[0][6] = a.getCarrera();
-                JScrollPane scroll = new JScrollPane();
-                tabla = new JTable(celdas2, titulos2);
-                //tabla.setModel(valor);
-                scroll.setViewportView(tabla);
-                scroll.setBounds(400, 170, 550, 120);
-                getContentPane().add(scroll);
+        if(cn.isSelected()){
+            if (x.getSource()==btnBuscar){
+                //System.out.println("cn");
+                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos WHERE Carrera= '"+cajac.getText()+"'";
+                ResultSetTableModel modeloTabla = null;
+                try {
+                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
 
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(getContentPane(), ex);
+                }
+
+                DefaultTableModel model = new DefaultTableModel();
+                //System.out.println("Hola");
+                int v1=modeloTabla.getColumnCount();
+                int v2=modeloTabla.getRowCount();
+                System.out.println(v2);
+                if(v2!=0){
+                    String[][] valor = new String[v1][v2];
+                    String[][] valor2 = new String[valor[0].length][valor.length];
+                    //System.out.println(v2);
+                    for (int i = 0; i <v1 ; i++) {
+                        model.addColumn(modeloTabla.getColumnName(i));
+                        for (int j = 0; j < v2; j++) {
+                            //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                            valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                            //model.addRow(valor);
+                        }
+                    }
+                    Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                    String celdas[][] = new String[valor[0].length][valor.length];
+                    JScrollPane scroll = new JScrollPane();
+
+                    for (int i = 0; i <valor.length ; i++) {
+                        for (int j = 0; j <valor[i].length ; j++) {
+                            celdas[j][i]=valor[i][j];
+                        }
+                    }
+
+                    for (int i = 0; i <v1 ; i++) {
+                        for (int j = 0; j <v2 ; j++) {
+                            //celdas[i][j]=valor[i][j];
+                        }
+                    }
+
+                    tabla = new JTable(celdas, titulos);
+                    //tabla.setModel(valor);
+                    scroll.setViewportView(tabla);
+                    scroll.setBounds(400, 170, 550, 120);
+                    getContentPane().add(scroll);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Datos no encontrados");
+                }
             }
-        }if(a.isSelected()){
+        }if(c.isSelected()){
+            if (x.getSource()==btnBuscar){
+                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos WHERE Nombre_Alumno= '"+cajac.getText()+"'";
+                ResultSetTableModel modeloTabla = null;
+                try {
+                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(getContentPane(), ex);
+                }
+
+                DefaultTableModel model = new DefaultTableModel();
+                //System.out.println("Hola");
+                int v1=modeloTabla.getColumnCount();
+                int v2=modeloTabla.getRowCount();
+                //System.out.println(v2);
+                if(v2!=0){
+                    String[][] valor = new String[v1][v2];
+                    String[][] valor2 = new String[valor[0].length][valor.length];
+                    //System.out.println(v2);
+                    for (int i = 0; i <v1 ; i++) {
+                        model.addColumn(modeloTabla.getColumnName(i));
+                        for (int j = 0; j < v2; j++) {
+                            //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                            valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                            //model.addRow(valor);
+                        }
+                    }
+                    Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                    String celdas[][] = new String[valor[0].length][valor.length];
+                    JScrollPane scroll = new JScrollPane();
+
+                    for (int i = 0; i <valor.length ; i++) {
+                        for (int j = 0; j <valor[i].length ; j++) {
+                            celdas[j][i]=valor[i][j];
+                        }
+                    }
+
+                    for (int i = 0; i <v1 ; i++) {
+                        for (int j = 0; j <v2 ; j++) {
+                            //celdas[i][j]=valor[i][j];
+                        }
+                    }
+
+                    tabla = new JTable(celdas, titulos);
+                    //tabla.setModel(valor);
+                    scroll.setViewportView(tabla);
+                    scroll.setBounds(400, 170, 550, 120);
+                    getContentPane().add(scroll);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Datos no encontrados");
+                }
+            }
+        }if(n.isSelected()){
+            if (x.getSource()==btnBuscar){
+                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos WHERE Num_Control= '"+cajac.getText()+"'";
+                ResultSetTableModel modeloTabla = null;
+                try {
+                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(getContentPane(), ex);
+                }
+
+                DefaultTableModel model = new DefaultTableModel();
+                //System.out.println("Hola");
+                int v1=modeloTabla.getColumnCount();
+                int v2=modeloTabla.getRowCount();
+                //System.out.println(v2);
+                if(v2!=0){
+                    String[][] valor = new String[v1][v2];
+                    String[][] valor2 = new String[valor[0].length][valor.length];
+                    //System.out.println(v2);
+                    for (int i = 0; i <v1 ; i++) {
+                        model.addColumn(modeloTabla.getColumnName(i));
+                        for (int j = 0; j < v2; j++) {
+                            //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                            valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                            //model.addRow(valor);
+                        }
+                    }
+                    Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                    String celdas[][] = new String[valor[0].length][valor.length];
+                    JScrollPane scroll = new JScrollPane();
+
+                    for (int i = 0; i <valor.length ; i++) {
+                        for (int j = 0; j <valor[i].length ; j++) {
+                            celdas[j][i]=valor[i][j];
+                        }
+                    }
+
+                    for (int i = 0; i <v1 ; i++) {
+                        for (int j = 0; j <v2 ; j++) {
+                            //celdas[i][j]=valor[i][j];
+                        }
+                    }
+
+                    tabla = new JTable(celdas, titulos);
+                    //tabla.setModel(valor);
+                    scroll.setViewportView(tabla);
+                    scroll.setBounds(400, 170, 550, 120);
+                    getContentPane().add(scroll);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Datos no encontrados");
+                }
+            }
+        }
+        if(a.isSelected()){
             System.out.println("Altas");
             cajaNumControl.setEditable(true);
             cajac2.setEditable(false);
@@ -325,15 +483,18 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                     String c = C;
 
                     boolean res = new AlumnoDAO().agregarAlumno(new Alumno(nc, n, pa, sa, e, s , c));
+                    boolean ok = new AlumnoDAO().agregausuario(new Usuario(nc,n));
                     boolean res2= new AlumnoDAORACLE().agregarAlumno(new Alumno(nc,n,pa,sa,e,s,c));
-
-                    //System.out.println( res ? "EXITO !!!" : "Fallo en la INSERCION !!!" );
-                    JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
-                    //dispose();
-                    cajaNumControl.setText("");
-                    cajaNombre.setText("");
-                    cajaPrimerAp.setText("");
-                    cajaSegundoAp.setText("");
+                    if(!res){
+                        JOptionPane.showMessageDialog(null,"Numero de control dupicado");
+                    }else{
+                        JOptionPane.showMessageDialog(null,NuC+" Dado de alta con exito");
+                        //dispose();
+                        cajaNumControl.setText("");
+                        cajaNombre.setText("");
+                        cajaPrimerAp.setText("");
+                        cajaSegundoAp.setText("");
+                    }
                 }
 
             }if(x.getSource() == btncancel){
@@ -390,10 +551,12 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                 cajaNumControl.setText("");
                 cajaNombre.setText("");
                 cajaPrimerAp.setText("");
+
                 cajaSegundoAp.setText("");
             }if(x.getSource()==btnBuscar2){
+                int valor=2;
                 String nnc= cajac.getText();
-                Alumno a = new AlumnoDAO().buscarAlumno(cajac2.getText());
+                Alumno a = new AlumnoDAO().buscarAlumno(valor,cajac2.getText());
                 Alumno a2 = new AlumnoDAORACLE().buscarAlumno(cajac2.getText());
                 int [] miArreglo=new int [30];
                 if ( a == null ){

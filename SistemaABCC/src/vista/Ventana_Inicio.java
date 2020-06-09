@@ -49,12 +49,12 @@ public class Ventana_Inicio extends JFrame {
 
 */
         //------------------------------------MOSTRAR UN ALUMNO  ---------------------------------------
-        Alumno a = new AlumnoDAO().buscarAlumno("2");
+        /*Alumno a = new AlumnoDAO().buscarAlumno(Num_Control,"2");
         if ( a == null )
             System.out.println("Error");
         else {
             System.out.println(a);
-        }
+        }*/
 
         //------------------------------------MOSTRAR MUCHOS ALUMNOS-----------------------------------
         /*ArrayList<Alumno> listaAlumnos = new AlumnoDAO().buscarAlumnos("");
