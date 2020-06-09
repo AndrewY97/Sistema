@@ -26,7 +26,7 @@ import java.util.Arrays;
 class VentanaPrincipal extends JFrame implements ActionListener{
 
     JTextField cajac,cajac2,cajaNumControl, cajaNombre, cajaSegundoAp, cajaPrimerAp;
-    JButton btnBuscar,btnBuscar2,btnEnviar, btncancel;
+    JButton btnBuscar,btnBuscar2,btnEnviar, btncancel,btngraficas;
     JTable tabla;
     JComboBox<String> combocarrera;
     JComboBox<Byte> combosemestre, comboEdad;
@@ -109,6 +109,12 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         scroll.setViewportView(tabla);
         scroll.setBounds(400, 170, 550, 120);
         getContentPane().add(scroll);
+
+        btngraficas = new JButton();
+        btngraficas.setBounds(400, 400, 40, 40);
+        btngraficas.addActionListener(this);
+        btngraficas.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\graf.PNG"));
+        add(btngraficas);
 
         JLabel lblbNumeroControl = new JLabel();
         lblbNumeroControl.setIcon(new ImageIcon("C:\\Users\\yero9\\IdeaProjects\\SistemaABCC\\src\\vista\\Imagenes\\nc.png"));
@@ -282,7 +288,6 @@ class VentanaPrincipal extends JFrame implements ActionListener{
         add(lblcarreras);
 
 
-
     }
 
     @Override
@@ -453,6 +458,13 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null,"Datos no encontrados");
                 }
             }
+        }if(x.getSource()==btngraficas){
+            try {
+                Graficas g = new Graficas();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
         }
         if(a.isSelected()){
             System.out.println("Altas");
@@ -494,6 +506,54 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                         cajaNombre.setText("");
                         cajaPrimerAp.setText("");
                         cajaSegundoAp.setText("");
+
+                        String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                        String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                        String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
+                        ResultSetTableModel modeloTabla = null;
+                        try {
+                            modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                        } catch (ClassNotFoundException | SQLException ex) {
+                            JOptionPane.showMessageDialog(getContentPane(), ex);
+                        }
+
+                        DefaultTableModel model = new DefaultTableModel();
+                        //System.out.println("Hola");
+                        int v1=modeloTabla.getColumnCount();
+                        int v2=modeloTabla.getRowCount();
+                        String[][] valor = new String[v1][v2];
+                        String[][] valor2 = new String[valor[0].length][valor.length];
+                        //System.out.println(v2);
+                        for (int i = 0; i <v1 ; i++) {
+                            model.addColumn(modeloTabla.getColumnName(i));
+                            for (int j = 0; j < v2; j++) {
+                                //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                                valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                                //model.addRow(valor);
+                            }
+                        }
+                        Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                        String celdas[][] = new String[valor[0].length][valor.length];
+                        JScrollPane scroll = new JScrollPane();
+
+                        for (int i = 0; i <valor.length ; i++) {
+                            for (int j = 0; j <valor[i].length ; j++) {
+                                celdas[j][i]=valor[i][j];
+                            }
+                        }
+
+                        for (int i = 0; i <v1 ; i++) {
+                            for (int j = 0; j <v2 ; j++) {
+                                //celdas[i][j]=valor[i][j];
+                            }
+                        }
+
+                        tabla = new JTable(celdas, titulos);
+                        //tabla.setModel(valor);
+                        scroll.setViewportView(tabla);
+                        scroll.setBounds(400, 170, 550, 120);
+                        getContentPane().add(scroll);
                     }
                 }
 
@@ -538,6 +598,54 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                     cajaNombre.setText("");
                     cajaPrimerAp.setText("");
                     cajaSegundoAp.setText("");
+
+                    String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                    String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                    String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
+                    ResultSetTableModel modeloTabla = null;
+                    try {
+                        modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        JOptionPane.showMessageDialog(getContentPane(), ex);
+                    }
+
+                    DefaultTableModel model = new DefaultTableModel();
+                    //System.out.println("Hola");
+                    int v1=modeloTabla.getColumnCount();
+                    int v2=modeloTabla.getRowCount();
+                    String[][] valor = new String[v1][v2];
+                    String[][] valor2 = new String[valor[0].length][valor.length];
+                    //System.out.println(v2);
+                    for (int i = 0; i <v1 ; i++) {
+                        model.addColumn(modeloTabla.getColumnName(i));
+                        for (int j = 0; j < v2; j++) {
+                            //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                            valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                            //model.addRow(valor);
+                        }
+                    }
+                    Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                    String celdas[][] = new String[valor[0].length][valor.length];
+                    JScrollPane scroll = new JScrollPane();
+
+                    for (int i = 0; i <valor.length ; i++) {
+                        for (int j = 0; j <valor[i].length ; j++) {
+                            celdas[j][i]=valor[i][j];
+                        }
+                    }
+
+                    for (int i = 0; i <v1 ; i++) {
+                        for (int j = 0; j <v2 ; j++) {
+                            //celdas[i][j]=valor[i][j];
+                        }
+                    }
+
+                    tabla = new JTable(celdas, titulos);
+                    //tabla.setModel(valor);
+                    scroll.setViewportView(tabla);
+                    scroll.setBounds(400, 170, 550, 120);
+                    getContentPane().add(scroll);
                 }
                 //System.out.println( res ? "EXITO MODIFICADO !!!" : "Fallo en la MODIFICACION !!!" );
             }if(x.getSource()==btncancel){
@@ -551,8 +659,54 @@ class VentanaPrincipal extends JFrame implements ActionListener{
                 cajaNumControl.setText("");
                 cajaNombre.setText("");
                 cajaPrimerAp.setText("");
-
                 cajaSegundoAp.setText("");
+
+                String CONTROLADOR_JDBC = "com.mysql.cj.jdbc.Driver";
+                String URL_BASEDEDATOS = "jdbc:mysql://localhost/BD_Escuela?useTimezone=true&serverTimezone=UTC";
+                String CONSULTA_PREDETERMINADA = "SELECT * FROM alumnos ORDER BY Num_Control";
+                ResultSetTableModel modeloTabla = null;
+                try {
+                    modeloTabla = new ResultSetTableModel(CONTROLADOR_JDBC, URL_BASEDEDATOS, CONSULTA_PREDETERMINADA);
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(getContentPane(), ex);
+                }
+                DefaultTableModel model = new DefaultTableModel();
+                //System.out.println("Hola");
+                int v1=modeloTabla.getColumnCount();
+                int v2=modeloTabla.getRowCount();
+                String[][] valor = new String[v1][v2];
+                String[][] valor2 = new String[valor[0].length][valor.length];
+                //System.out.println(v2);
+                for (int i = 0; i <v1 ; i++) {
+                    model.addColumn(modeloTabla.getColumnName(i));
+                    for (int j = 0; j < v2; j++) {
+                        //valor.add(String.valueOf(modeloTabla.getValueAt(j, i)));
+                        valor[i][j]=String.valueOf(modeloTabla.getValueAt(j,i));
+                        //model.addRow(valor);
+                    }
+                }
+                Object titulos[] = {"Núm. Control", "Nombre(s)", "Ap. Paterno", "Ap. Materno", "Edad","Semestre","Carrera"};
+                String celdas[][] = new String[valor[0].length][valor.length];
+                JScrollPane scroll = new JScrollPane();
+
+                for (int i = 0; i <valor.length ; i++) {
+                    for (int j = 0; j <valor[i].length ; j++) {
+                        celdas[j][i]=valor[i][j];
+                    }
+                }
+
+                for (int i = 0; i <v1 ; i++) {
+                    for (int j = 0; j <v2 ; j++) {
+                        //celdas[i][j]=valor[i][j];
+                    }
+                }
+
+                tabla = new JTable(celdas, titulos);
+                //tabla.setModel(valor);
+                scroll.setViewportView(tabla);
+                scroll.setBounds(400, 170, 550, 120);
+                getContentPane().add(scroll);
             }if(x.getSource()==btnBuscar2){
                 int valor=2;
                 String nnc= cajac.getText();

@@ -1,12 +1,10 @@
 package controlador;
 
-import com.sun.net.httpserver.Authenticator;
 import conexionBD.ConexionBD;
 import modelo.Alumno;
 import modelo.Usuario;
+import org.jfree.data.general.DefaultPieDataset;
 
-import javax.swing.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -126,5 +124,70 @@ public class AlumnoDAO {
         boolean resultado = new ConexionBD().ejecutarInstruccion(sql);
         System.out.println("ALUMNO DAO: " + resultado);
         return resultado;
+    }
+
+    public int  graficas1(Double s) throws SQLException {
+        String con1 = "SELECT COUNT(*) FROM alumnos WHERE Carrera = 'ING. Sistemas';";
+
+        ResultSet resultado = new ConexionBD().ejecutarConsultaRegistros(con1);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        int N_Registros = 0;
+        if (resultado.next()) {
+            N_Registros = resultado.getInt("count(*)");
+        }
+        return N_Registros;
+    }
+
+    public int  graficas2(Double m) throws SQLException {
+        String con1 = "SELECT COUNT(*) FROM alumnos WHERE Carrera = 'ING. Mecatrónica';";
+
+        ResultSet resultado = new ConexionBD().ejecutarConsultaRegistros(con1);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        int N_Registros = 0;
+        if (resultado.next()) {
+            N_Registros = resultado.getInt("count(*)");
+        }
+        return N_Registros;
+    }
+
+    public int  graficas3(Double a) throws SQLException {
+        String con1 = "SELECT COUNT(*) FROM alumnos WHERE Carrera = 'Administración';";
+
+        ResultSet resultado = new ConexionBD().ejecutarConsultaRegistros(con1);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        int N_Registros = 0;
+        if (resultado.next()) {
+            N_Registros = resultado.getInt("count(*)");
+        }
+        return N_Registros;
+    }
+
+    public int  graficas4(Double c) throws SQLException {
+        String con1 = "SELECT COUNT(*) FROM alumnos WHERE Carrera = 'Contaduría';";
+
+        ResultSet resultado = new ConexionBD().ejecutarConsultaRegistros(con1);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        int N_Registros = 0;
+        if (resultado.next()) {
+            N_Registros = resultado.getInt("count(*)");
+        }
+        return N_Registros;
+    }
+
+    public int  graficas5(Double ali) throws SQLException {
+        String con1 = "SELECT COUNT(*) FROM alumnos WHERE Carrera = 'ING. Alimentos';";
+
+        ResultSet resultado = new ConexionBD().ejecutarConsultaRegistros(con1);
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        int N_Registros = 0;
+        if (resultado.next()) {
+            N_Registros = resultado.getInt("count(*)");
+        }
+        return N_Registros;
     }
 }
